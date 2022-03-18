@@ -3,18 +3,12 @@ package com.example.githubuser.presentation.main
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.githubuser.R
-import com.example.githubuser.UserAdapter
-import com.example.githubuser.UserData
 import com.example.githubuser.databinding.ActivityMainBinding
 import com.example.githubuser.model.UserItem
 import com.example.githubuser.presentation.details.DetailsActivity
@@ -47,18 +41,18 @@ class MainActivity : AppCompatActivity() {
             showLoading(it)
         })
 
-        binding.edtSearch.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
             }
 
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                mainViewModel.getUser(s.toString())
-            }
-
-            override fun afterTextChanged(s: Editable?) {
+            override fun onQueryTextChange(newText: String?): Boolean {
+                mainViewModel.getUser(newText!!)
+                return true
             }
 
         })
+
         mainViewModel.listUser.observe(this, { listUser ->
             showListUser(listUser)
         })
