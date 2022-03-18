@@ -1,5 +1,6 @@
 package com.example.githubuser.presentation.main
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
@@ -16,6 +17,7 @@ import com.example.githubuser.UserAdapter
 import com.example.githubuser.UserData
 import com.example.githubuser.databinding.ActivityMainBinding
 import com.example.githubuser.model.UserItem
+import com.example.githubuser.presentation.details.DetailsActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -24,6 +26,10 @@ class MainActivity : AppCompatActivity() {
 
     private val mainAdapter = MainAdapter {
         Toast.makeText(this, it.login, Toast.LENGTH_SHORT).show()
+
+        val intent = Intent(this, DetailsActivity::class.java)
+        intent.putExtra(DetailsActivity.USERNAME, it.login)
+        startActivity(intent)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
