@@ -36,8 +36,8 @@ class DetailsActivity : AppCompatActivity() {
         // get data from intent
         val username = intent.getStringExtra(USERNAME)!!
 
-        // setup tablayout
-        setupTabLayout()
+        // setup tabLayout
+        setupTabLayout(username)
 
         // init viewModel
         val detailsViewModel = ViewModelProvider(
@@ -56,8 +56,8 @@ class DetailsActivity : AppCompatActivity() {
 
     }
 
-    private fun setupTabLayout() {
-        val sectionsPagerAdapter = SectionsPagerAdapter(this)
+    private fun setupTabLayout(username: String) {
+        val sectionsPagerAdapter = SectionsPagerAdapter(this, username)
         val viewPager: ViewPager2 = findViewById(R.id.vp_details)
         viewPager.adapter = sectionsPagerAdapter
         val tabs: TabLayout = findViewById(R.id.tabs)
