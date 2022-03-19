@@ -4,10 +4,10 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.githubuser.model.SearchUserResponse
-import com.example.githubuser.model.UserDetailsResponse
-import com.example.githubuser.model.UserItem
+import com.example.githubuser.model.*
 import com.example.githubuser.network.ApiConfig
+import com.example.githubuser.presentation.details.followers.FollowersViewModel
+import com.example.githubuser.presentation.details.following.FollowingViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -20,6 +20,9 @@ class DetailsViewModel : ViewModel() {
 
     private val _detailsUser = MutableLiveData<UserDetailsResponse>()
     val detailsUser: LiveData<UserDetailsResponse> = _detailsUser
+
+    private val _repositoryNumber = MutableLiveData<Int>()
+    val repositoryNumber: LiveData<Int> = _repositoryNumber
 
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
@@ -48,4 +51,28 @@ class DetailsViewModel : ViewModel() {
         })
     }
 
+    fun getUserRepository(username: String) {
+        _isLoading.value = true
+        val client = ApiConfig.getApiService().getUserRepository(username)
+        client.enqueue(object : Callback<List<Repository>> {
+            override fun onResponse(
+                call: Call<List<Repository>>,
+                response: Response<List<Repository>>
+            ) {
+                _isLoading.value = false
+                if (response.isSuccessful) {
+                    _repositoryNumber.value = response.body()?.size ?: 0
+                } else {
+                    _repositoryNumber.value = 0
+                    Log.e(TAG, "onFailure onResponse: ${response.message()}")
+                }
+            }
+
+            override fun onFailure(call: Call<List<Repository>>, t: Throwable) {
+                _isLoading.value = false
+                Log.e(TAG, "onFailure onFailure: ${t.message.toString()}")
+            }
+
+        })
+    }
 }

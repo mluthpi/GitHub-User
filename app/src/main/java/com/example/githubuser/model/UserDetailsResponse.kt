@@ -95,7 +95,7 @@ data class UserDetailsResponse(
 	val name: String? = null,
 
 	@Json(name="location")
-	val location: Any? = null,
+	val location: String? = null,
 
 	@Json(name="node_id")
 	val nodeId: String? = null

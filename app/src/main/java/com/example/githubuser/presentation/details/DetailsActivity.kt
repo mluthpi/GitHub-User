@@ -50,6 +50,11 @@ class DetailsActivity : AppCompatActivity() {
             showUserDetails(userDetails)
         })
 
+        detailsViewModel.getUserRepository(username)
+        detailsViewModel.repositoryNumber.observe(this, { number ->
+            showUserRepositoryNumber(number)
+        })
+
         detailsViewModel.isLoading.observe(this,{ isLoading ->
             showLoading(isLoading)
         })
@@ -72,6 +77,13 @@ class DetailsActivity : AppCompatActivity() {
             .load(userDetailsResponse.avatarUrl)
             .into(binding.imgAvatar)
         binding.tvUsername.text = userDetailsResponse.login
+        binding.tvLocation.text = userDetailsResponse.location ?: "-"
+        binding.tvFollowersCount.text = userDetailsResponse.followers.toString()
+        binding.tvFollowingCount.text = userDetailsResponse.following.toString()
+    }
+
+    private fun showUserRepositoryNumber(number: Int) {
+        binding.tvRepository.text = "Repository : $number"
     }
 
     private fun showLoading(isLoading: Boolean) {
