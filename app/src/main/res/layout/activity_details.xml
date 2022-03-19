@@ -37,8 +37,17 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_username"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             tools:text="Jakarta, Indonesia" />
+
+        <TextView
+            android:id="@+id/tv_company"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_location"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+            tools:text="Bintang Pelajar" />
 
 
         <ProgressBar
@@ -50,7 +59,7 @@
 
         <LinearLayout
             android:id="@+id/layout_followers_following"
-            android:layout_below="@id/tv_location"
+            android:layout_below="@id/tv_company"
             android:layout_marginTop="16dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

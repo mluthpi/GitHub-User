@@ -76,8 +76,9 @@ class DetailsActivity : AppCompatActivity() {
         Glide.with(this)
             .load(userDetailsResponse.avatarUrl)
             .into(binding.imgAvatar)
-        binding.tvUsername.text = userDetailsResponse.login
+        binding.tvUsername.text = userDetailsResponse.name
         binding.tvLocation.text = userDetailsResponse.location ?: "-"
+        binding.tvCompany.text = userDetailsResponse.company ?: "-"
         binding.tvFollowersCount.text = userDetailsResponse.followers.toString()
         binding.tvFollowingCount.text = userDetailsResponse.following.toString()
     }
