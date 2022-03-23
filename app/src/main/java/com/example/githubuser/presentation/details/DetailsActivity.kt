@@ -76,7 +76,8 @@ class DetailsActivity : AppCompatActivity() {
         Glide.with(this)
             .load(userDetailsResponse.avatarUrl)
             .into(binding.imgAvatar)
-        binding.tvUsername.text = userDetailsResponse.name
+        binding.tvFullName.text = userDetailsResponse.name
+        binding.tvUsername.text = userDetailsResponse.login
         binding.tvLocation.text = userDetailsResponse.location ?: "-"
         binding.tvCompany.text = userDetailsResponse.company ?: "-"
         binding.tvFollowersCount.text = userDetailsResponse.followers.toString()
@@ -84,7 +85,7 @@ class DetailsActivity : AppCompatActivity() {
     }
 
     private fun showUserRepositoryNumber(number: Int) {
-        binding.tvRepository.text = "Repository : $number"
+        binding.tvRepository.text = number.toString()
     }
 
     private fun showLoading(isLoading: Boolean) {
