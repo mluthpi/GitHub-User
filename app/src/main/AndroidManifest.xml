@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GitHubUser">
         <activity
+            android:name=".presentation.main.MainActivity"
+            android:exported="false" />
+        <activity
             android:name=".presentation.settings.SettingsActivity"
             android:exported="false" />
         <activity
@@ -21,8 +24,9 @@
             android:name=".presentation.details.DetailsActivity"
             android:exported="false" />
         <activity
-            android:name=".presentation.main.MainActivity"
-            android:exported="true">
+            android:name=".presentation.SplashScreenActivity"
+            android:exported="true"
+            android:theme="@style/Theme.GitHubUser.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

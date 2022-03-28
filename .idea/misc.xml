@@ -9,6 +9,8 @@
         <entry key="app/src/main/res/layout/activity_details.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/layout/activity_favorite.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/activity_settings.xml" value="0.15885416666666666" />
+        <entry key="app/src/main/res/layout/activity_splash_screen.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/layout/fragment_followers.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/layout/fragment_following.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/layout/item_user.xml" value="0.28229166666666666" />

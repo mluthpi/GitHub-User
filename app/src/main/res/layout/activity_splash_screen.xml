@@ -4,17 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.settings.SettingsActivity">
+    tools:context=".presentation.SplashScreenActivity">
 
-    <Switch
-        android:id="@+id/switch_theme"
+    <ImageView
+        android:padding="48dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/github_color"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:padding="16dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Dark Mode"
-        tools:ignore="UseSwitchCompatOrMaterialXml" />
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
