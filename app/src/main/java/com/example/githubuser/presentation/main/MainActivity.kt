@@ -24,8 +24,6 @@ class MainActivity : AppCompatActivity() {
     private val binding get() = _binding!!
 
     private val mainAdapter = MainAdapter {
-        Toast.makeText(this, it.login, Toast.LENGTH_SHORT).show()
-
         val intent = Intent(this, DetailsActivity::class.java)
         intent.putExtra(DetailsActivity.USERNAME, it.login)
         startActivity(intent)

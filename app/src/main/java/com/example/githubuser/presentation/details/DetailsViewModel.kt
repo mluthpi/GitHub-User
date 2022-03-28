@@ -1,5 +1,6 @@
 package com.example.githubuser.presentation.details
 
+import android.app.Application
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -8,11 +9,13 @@ import com.example.githubuser.model.*
 import com.example.githubuser.network.ApiConfig
 import com.example.githubuser.presentation.details.followers.FollowersViewModel
 import com.example.githubuser.presentation.details.following.FollowingViewModel
+import com.example.githubuser.repository.UserRepository
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class DetailsViewModel : ViewModel() {
+class DetailsViewModel(application: Application) : ViewModel() {
+    private val mUserRepository: UserRepository = UserRepository(application)
 
     companion object{
         private const val TAG = "DetailsViewModel"
@@ -75,4 +78,14 @@ class DetailsViewModel : ViewModel() {
 
         })
     }
+
+    fun insertToDB(user: UserItem) {
+        mUserRepository.insert(user)
+    }
+
+    fun deleteFromDB(user: UserItem) {
+        mUserRepository.delete(user)
+    }
+
+    fun getFavoriteUsers(): LiveData<List<UserItem>> = mUserRepository.getAllUsers()
 }
