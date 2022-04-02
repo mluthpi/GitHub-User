@@ -54,31 +54,6 @@ class DetailsViewModel(application: Application) : ViewModel() {
         })
     }
 
-    fun getUserRepository(username: String) {
-        _isLoading.value = true
-        val client = ApiConfig.getApiService().getUserRepository(username)
-        client.enqueue(object : Callback<List<Repository>> {
-            override fun onResponse(
-                call: Call<List<Repository>>,
-                response: Response<List<Repository>>
-            ) {
-                _isLoading.value = false
-                if (response.isSuccessful) {
-                    _repositoryNumber.value = response.body()?.size ?: 0
-                } else {
-                    _repositoryNumber.value = 0
-                    Log.e(TAG, "onFailure onResponse: ${response.message()}")
-                }
-            }
-
-            override fun onFailure(call: Call<List<Repository>>, t: Throwable) {
-                _isLoading.value = false
-                Log.e(TAG, "onFailure onFailure: ${t.message.toString()}")
-            }
-
-        })
-    }
-
     fun insertToDB(user: UserItem) {
         mUserRepository.insert(user)
     }

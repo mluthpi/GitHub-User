@@ -24,7 +24,4 @@ interface ApiRest {
 
     @GET("users/{username}/following")
     fun getUserFollowing(@Path("username") username: String): Call<List<User>>
-
-    @GET("users/{username}/repos")
-    fun getUserRepository(@Path("username") username: String): Call<List<Repository>>
 }

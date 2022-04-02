@@ -51,11 +51,6 @@ class DetailsActivity : AppCompatActivity() {
             showUserDetails(userDetails)
         })
 
-        detailsViewModel.getUserRepository(username)
-        detailsViewModel.repositoryNumber.observe(this, { number ->
-            showUserRepositoryNumber(number)
-        })
-
         detailsViewModel.isLoading.observe(this, { isLoading ->
             showLoading(isLoading)
         })
@@ -92,16 +87,13 @@ class DetailsActivity : AppCompatActivity() {
         binding.tvCompany.text = userDetailsResponse.company ?: "-"
         binding.tvFollowersCount.text = userDetailsResponse.followers.toString()
         binding.tvFollowingCount.text = userDetailsResponse.following.toString()
+        binding.tvRepository.text = userDetailsResponse.publicRepos.toString()
 
         detailsViewModel.getFavoriteUsers().observe(this, { favUser ->
             val isFavorite = favUser.filter { it.id == userDetailsResponse.id }.isNotEmpty()
             setupFavoriteUser(isFavorite, userDetailsResponse)
         })
 
-    }
-
-    private fun showUserRepositoryNumber(number: Int) {
-        binding.tvRepository.text = number.toString()
     }
 
     private fun setupFavoriteUser(isFavorite: Boolean, user: UserDetailsResponse) {
